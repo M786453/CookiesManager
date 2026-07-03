@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Cookie Manager",
+  "version": "1.0",
+  "description": "Extract cookies of the current webpage in JSON format.",
+  "permissions": [
+    "cookies",
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Cookie Exporter"
+  }
+}

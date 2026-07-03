@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cookie Exporter</title>
+
+    <style>
+        body{
+            width:500px;
+            padding:15px;
+            font-family:Arial,sans-serif;
+        }
+
+        button{
+            padding:10px 15px;
+            margin-bottom:10px;
+            cursor:pointer;
+        }
+
+        textarea{
+            width:100%;
+            height:350px;
+            resize:none;
+            font-family:monospace;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Cookies (JSON)</h2>
+
+<button id="extractBtn">Extract Cookies</button>
+<button id="copyBtn">Copy JSON</button>
+
+<textarea id="output" readonly></textarea>
+
+<script src="popup.js"></script>
+
+</body>
+</html>
