@@ -2,6 +2,8 @@ const extractBtn = document.getElementById("extractBtn");
 const copyBtn = document.getElementById("copyBtn");
 const output = document.getElementById("output");
 
+let currentCookies = [];
+
 extractBtn.addEventListener("click", async () => {
 
     const [tab] = await chrome.tabs.query({
@@ -15,20 +17,27 @@ extractBtn.addEventListener("click", async () => {
             url: tab.url
         },
         (cookies) => {
+
+            currentCookies = cookies;
+
             output.value = JSON.stringify(cookies, null, 2);
         }
     );
 
 });
 
-copyBtn.addEventListener("click", async () => {
+document.getElementById("copyJsonBtn").addEventListener("click", async () => {
+    await navigator.clipboard.writeText(
+        JSON.stringify(currentCookies, null, 2)
+    );
+});
 
-    await navigator.clipboard.writeText(output.value);
+document.getElementById("copyHeaderBtn").addEventListener("click", async () => {
 
-    copyBtn.textContent = "Copied!";
+    const cookieHeader = currentCookies
+        .map(cookie => `${cookie.name}=${cookie.value}`)
+        .join("; ");
 
-    setTimeout(() => {
-        copyBtn.textContent = "Copy JSON";
-    }, 1500);
+    await navigator.clipboard.writeText(cookieHeader);
 
 });
